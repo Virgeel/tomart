@@ -165,7 +165,7 @@ class StokController extends Controller
                 ->get();
 
     
-    
+
     return view('isi.stok.editstok', [
         'stok' => $stok,
         
@@ -184,40 +184,37 @@ class StokController extends Controller
     {
         $validatedStok = $request -> validate([
 
-            'nama.*' => 'required',
-            'kategori.*' => '',
-            'harga.*' => '',
-
-            'produk_id.*' => 'required|exists:produks,id',
-            'tanggal.*' => 'required',
-            'stokAwal.*' => 'required',
+            'id' => 'required|array',         
+            'stokAwal.*' => '',
             'stokAkhir.*' => '',
             'terjual.*' => '',
             'total.*' => '',
         ]);
 
-        foreach ($validatedStok['produk_id'] as $index => $productId) {
+        foreach ($validatedStok['id'] as $index => $id) {
 
-            $stok = new Stok([
+            $stokAwal = $validatedStok['stokAwal'][$id];
+            $stokAkhir = $validatedStok['stokAkhir'][$id];
+            $terjual = $validatedStok['terjual'][$id];
+            $total = $validatedStok['total'][$id];
+
+            Stok::where('namaPegawai',$namaPegawai)
+                        ->where('tanggal',$tanggal)
+                        ->where('id',$id)
+                        ->update([
                
-                'nama' => $validatedStok['nama'][$index],
-                'kategori' => $validatedStok['kategori'][$index],
-                'harga' => $validatedStok['harga'][$index],
-                'tanggal' => $request->input('tanggal'),
-                'namaPegawai' => $namaPegawai,
-                'stokAwal' => $validatedStok['stokAwal'][$index],
-                'stokAhir' => $validatedStok['stokAkhir'][$index],
-                'terjual' => $validatedStok['terjual'][$index],
-                'total' => $validatedStok['total'][$index],
-                'produk_id' => $validatedStok['produk_id'][$index],
+                            'stokAwal' => $stokAwal,
+                            'stokAkhir' => $stokAkhir,
+                            'terjual' => $terjual,
+                            'total' => $total,
 
             ]);
 
-            $produk = Produk::find($productId);
-            $produk->stok()->update($stok);
-
         }
+        
+        
 
+        
         return redirect('/dashboard/stok')->with('success', 'Stok berhasil ditambahkan.'); 
     }
 

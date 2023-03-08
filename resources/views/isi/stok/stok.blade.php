@@ -93,8 +93,11 @@
             </td>
             <td>
 
-                
-                {{$stoks->total ? $stoks->total : "Data Kosong"}}
+                @if($stoks->total != null)
+                Rp. {{$stoks->total}}
+                @else
+                Data Kosong
+                @endif
                 
                 
                 

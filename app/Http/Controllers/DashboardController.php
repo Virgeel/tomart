@@ -45,8 +45,9 @@ class DashboardController extends Controller
                     return $query->whereDate('tanggal', $tanggal);
                 })
                 
-                ->select('namaPegawai','tanggal')
+                ->select('namaPegawai','tanggal',DB::raw('SUM(total) as total'))
                 ->with('pegawai')
+                ->groupBy('namaPegawai','tanggal')
                 ->orderBy('id','asc')
                 ->distinct('namaPegawai')
                 ->get();

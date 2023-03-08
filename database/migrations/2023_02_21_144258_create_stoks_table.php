@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('stokAwal')->nullable();
             $table->integer('stokAkhir')->nullable();
             $table->integer('terjual')->nullable();
-            $table->float('total')->nullable();
+            $table->integer('total')->nullable();
          
 
             

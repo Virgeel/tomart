@@ -3,7 +3,7 @@
 @section('isidb')
 
 <div class="column">
-    <form method="POST" action="/dashboard/stok">
+    <form method="POST" action="/dashboard/stok/{{$stok[0]->namaPegawai}}/{{$stok[0]->tanggal}}/edit">
         @csrf
 
 
@@ -117,6 +117,9 @@
 
 @foreach ($stok as $stoks)
 
+
+<input type="hidden" name="id[]" value="{{ $stoks->id }}">
+
     
 <tr style="font-family:Poppins;">
     <td style="padding:10px;text-align:center">
@@ -143,19 +146,19 @@
     </td>
     <td>
     
-        <input type="text" name="stokAwal[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->stokAwal}}">
+        <input type="number" name="stokAwal[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->stokAwal}}">
 
         
     </td>
     <td>
-        <input type="text" name="stokAkhir[]" style="width:100px;">
+        <input type="number" name="stokAkhir[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->stokAkhir}}">
     </td>
 
     <td>
-        <input type="text" name="terjual[]" style="width:100px;">
+        <input type="number" name="terjual[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->terjual}}">
     </td>
     <td>
-        <input type="text" name="total[]" style="width:100px;">
+        <input type="number" name="total[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->total}}">
     </td>
 </tr>
 
