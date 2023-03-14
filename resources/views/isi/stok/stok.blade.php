@@ -74,7 +74,7 @@
 @foreach ($stok -> skip(0) as $stoks)
     
         <tr style="font-family:Poppins;">
-            <td style="padding:10px;text-align:center">
+            <td style="padding:10px;text-align:center;">
                 {{$count++}}
             </td>
             <td>
@@ -94,7 +94,7 @@
             <td>
 
                 @if($stoks->total != null)
-                Rp. {{$stoks->total}}
+                Rp. {{number_format($stoks->total,0,',','.',)}}
                 @else
                 Data Kosong
                 @endif
@@ -111,12 +111,13 @@
                 
             </td>
             <td>
-
-                <div style="padding-top:13px;">
-                    <form action="/dashboard/pegawai/{{$stoks->id}}" method="post">
-                        @method('delete')
-                        @csrf
-                    <input type="submit" value="HAPUS"  onclick="return confirm('Pegawai ini akan dihapus')" style="padding-top:3;
+                
+                <form action="/dashboard/stok/{{$stoks->namaPegawai}}/{{$stoks->tanggal}}/delete" method="post" class="d-inline">
+                    @method('delete')
+                    @csrf
+                    
+                    <input type="submit" value="HAPUS"  onclick="return confirm('Pegawai ini akan dihapus')" style="
+                    padding-top:3px;
                     text-align: center;
                     width: 90;
                     height: 28;
@@ -127,8 +128,8 @@
                     font-family: Poppins;
                     font-weight:400;
                     font-size: 15;
-                    cursor : pointer;"></form>
-                </div>
+                    cursor : pointer;">
+                </form>
                 
             </td>
         </tr>
@@ -141,7 +142,7 @@
 @else
 
 <div style="padding-top:50px;">
-    <table style="width:1400px; background-color:white;border-collapse:collapse; text-align:left;">
+    <table style="width:1400px; background-color:white; text-align:left;">
 
         <thead>
         <tr style="background-color:#f7f7f7;font-family:Poppins;">

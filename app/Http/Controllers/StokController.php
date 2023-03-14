@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateStokRequest;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 
 class StokController extends Controller
@@ -83,6 +84,14 @@ class StokController extends Controller
 
             foreach ($validatedStok['produk_id'] as $index => $productId) {
 
+                $terjual = $validatedStok['stokAwal'][$index];
+
+                if (isset($validatedStok['stokAkhir'][$index])) {
+                    $terjual -= $validatedStok['stokAkhir'][$index];
+                }
+        
+                $total = $terjual * $validatedStok['harga'][$index];
+
                 $stok = new Stok([
                    
                     'nama' => $validatedStok['nama'][$index],
@@ -92,11 +101,18 @@ class StokController extends Controller
                     'namaPegawai' => $request->input('namaPegawai'),
                     'stokAwal' => $validatedStok['stokAwal'][$index],
                     'stokAhir' => $validatedStok['stokAkhir'][$index],
-                    'terjual' => $validatedStok['terjual'][$index],
                     'total' => $validatedStok['total'][$index],
                     'produk_id' => $validatedStok['produk_id'][$index],
 
                 ]);
+
+                
+
+                
+                // 'terjual' => $validatedStok['terjual'][$index],
+
+                
+
 
                 $produk = Produk::find($productId);
                 $produk->stok()->save($stok);
@@ -164,10 +180,16 @@ class StokController extends Controller
                 ->with('produk')
                 ->get();
 
+
+    $hasil = Stok::where('namaPegawai' ,$namaPegawai)
+                    ->where('tanggal',$tanggal)
+                    ->sum('total');
+
     
 
     return view('isi.stok.editstok', [
         'stok' => $stok,
+        'hasil' => $hasil,
         
 
     ]);
@@ -189,14 +211,22 @@ class StokController extends Controller
             'stokAkhir.*' => '',
             'terjual.*' => '',
             'total.*' => '',
+            'harga.*' => '',
         ]);
 
         foreach ($validatedStok['id'] as $index => $id) {
 
             $stokAwal = $validatedStok['stokAwal'][$id];
-            $stokAkhir = $validatedStok['stokAkhir'][$id];
-            $terjual = $validatedStok['terjual'][$id];
-            $total = $validatedStok['total'][$id];
+            $stokAkhir = $validatedStok['stokAkhir'][$id] ?? null;
+            $harga = $validatedStok['harga'][$id];
+        
+            if ($stokAkhir !== null) {
+                $terjual = $stokAwal - $stokAkhir;
+                $total = $terjual * $harga;
+            } else {
+                $terjual = null;
+                $total = null;
+            }
 
             Stok::where('namaPegawai',$namaPegawai)
                         ->where('tanggal',$tanggal)
@@ -224,8 +254,14 @@ class StokController extends Controller
      * @param  \App\Models\Stok  $stok
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stok $stok)
+    public function destroy($namaPegawai, $tanggal)
     {
-        //
-    }
-}
+        Stok::where('namaPegawai',$namaPegawai)
+                ->where('tanggal',$tanggal)
+                ->delete();
+
+
+                return redirect('/dashboard/stok')->with('deleted', 'Item Baru Telah Dihapus!');
+        
+            }
+        }

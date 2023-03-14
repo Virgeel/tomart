@@ -41,10 +41,13 @@ mulailah dari mana kamu berada.
 <div style="font-family:Poppins;padding-top:20px;">
 <form action ="/login" method="post">
     @csrf
-    <label for="email"><b>Email</b></label>
+    <label for="email">
+        <i class="fas fa-envelope"></i>
+        <b>Email</b>
+        </label>
 
     <br>
-    <input type="email" id="email" name="email" placeholder="contoh@gmail.com">
+    <input type="email" id="email" name="email" placeholder="contoh@gmail.com" autofocus>
 
     @error('email')
     <div class="invalid-feedback">

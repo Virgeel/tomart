@@ -14,8 +14,34 @@ class DashboardController extends Controller
 {
     //
 
-    public function landing(){
-        return view('isi/dashboard');
+    public function landing(Request $request){
+        $tanggal = $request->input('tanggal');
+        $tanggals = Stok::select('tanggal')->distinct()->orderBy('tanggal')->get()->pluck('tanggal');
+        $stok = Stok::query()
+        ->when($tanggal, function($query, $tanggal) {
+            return $query->whereDate('tanggal', $tanggal);
+        })
+        
+        ->select('namaPegawai','tanggal',DB::raw('SUM(total) as total'))
+        ->with('pegawai')
+        ->groupBy('namaPegawai','tanggal')
+        ->orderBy('tanggal','asc')
+        ->distinct('namaPegawai')
+        ->get();
+
+        $total = Stok::sum('total');
+        
+        return view('isi/dashboard',[
+            "products" => Produk::all(),
+            "pegawai" => Pegawai::all(),
+            "stok" => $stok,
+            "tanggal" => $tanggals,
+            "total" => $total,
+        ]);
+    }
+
+    public function penjualanterbaru(){
+        return view('layouts.penjualanterbaru');
     }
 
     public function produk(){
@@ -51,6 +77,8 @@ class DashboardController extends Controller
                 ->orderBy('id','asc')
                 ->distinct('namaPegawai')
                 ->get();
+
+        
     
         
         $pegawai = Pegawai::all();
@@ -61,4 +89,5 @@ class DashboardController extends Controller
             "stok" => $stok,
         ], );
     }
+    
 }

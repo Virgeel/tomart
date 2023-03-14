@@ -30,25 +30,26 @@ Route::post('/logout',[LoginController::class,'logout']);
 Route::get('/register',[RegisterController::class,'landing']);
 Route::post('/register',[RegisterController::class,'store']);
 
-Route::get('/dashboard',[DashboardController::class,'landing']);
+Route::get('/dashboard',[DashboardController::class,'landing'])->middleware('auth');
 
-Route::get('/dashboard/produk',[ProdukController::class,'index']);
-Route::get('/dashboard/produk/tambah',[ProdukController::class,'tambah']);
-Route::get('/dashboard/produk/{id}/edit',[ProdukController::class,'edit']);
+Route::get('/dashboard/produk',[ProdukController::class,'index'])->middleware('auth');
+Route::get('/dashboard/produk/tambah',[ProdukController::class,'tambah'])->middleware('auth');
+Route::get('/dashboard/produk/{id}/edit',[ProdukController::class,'edit'])->middleware('auth');
 Route::post('/dashboard/produk/tambah',[ProdukController::class,'store']);
 Route::post('/dashboard/produk/{id}/edit',[ProdukController::class,'update']);
 Route::delete('/dashboard/produk/{id}',[ProdukController::class,'destroy']);
 
-Route::get('/dashboard/pegawai',[DashboardController::class,'pegawai']);
-Route::get('/dashboard/pegawai/tambah',[PegawaiController::class,'index']);
+Route::get('/dashboard/pegawai',[DashboardController::class,'pegawai'])->middleware('auth');
+Route::get('/dashboard/pegawai/tambah',[PegawaiController::class,'index'])->middleware('auth');
 Route::post('/dashboard/pegawai/tambah',[PegawaiController::class,'create']);
 Route::post('/dashboard/pegawai/{id}/edit',[PegawaiController::class,'update']);
-Route::get('/dashboard/pegawai/{id}/edit',[PegawaiController::class,'edit']);
+Route::get('/dashboard/pegawai/{id}/edit',[PegawaiController::class,'edit'])->middleware('auth');
 Route::delete('/dashboard/pegawai/{id}',[PegawaiController::class,'destroy']);
 
-Route::get('/dashboard/stok',[DashboardController::class,'stok']);
-Route::get('/dashboard/stok/tambah',[StokController::class,'create']);
+Route::get('/dashboard/stok',[DashboardController::class,'stok'])->middleware('auth');
+Route::get('/dashboard/stok/tambah',[StokController::class,'create'])->middleware('auth');
 Route::post('/dashboard/stok/create',[StokController::class,'store']);
-Route::get('/dashboard/stok/{namaPegawai}/{tanggal}/edit',[StokController::class,'edit']);
+Route::get('/dashboard/stok/{namaPegawai}/{tanggal}/edit',[StokController::class,'edit'])->middleware('auth');
 Route::post('/dashboard/stok/{namaPegawai}/{tanggal}/edit',[StokController::class,'update']);
+Route::delete('/dashboard/stok/{namaPegawai}/{tanggal}/delete',[StokController::class,'destroy']);
 

@@ -80,10 +80,10 @@
             
                 <div style="position:absolute;top:20%;">
                     <div style="padding-top:50px;">
-                        <table style="width:1400px; background-color:white;border:solid 1px black; text-align:left;">
+                        <table style="width:1400px; background-color:white;border:solid 1px rgb(218, 218, 218); text-align:left;">
                     
                             <thead>
-                            <tr style="background-color:#f7f7f7;font-family:Poppins;">
+                            <tr style="background-color:#f7f7f7;font-family:Poppins; border:solid 1px rgb(218, 218, 218)">
                                <th style="text-align: center;">
                                 #
                                </th>
@@ -121,11 +121,11 @@
 <input type="hidden" name="id[]" value="{{ $stoks->id }}">
 
     
-<tr style="font-family:Poppins;">
-    <td style="padding:10px;text-align:center">
+<tr style="font-family:Poppins; ">
+    <td style="padding:10px;text-align:center;border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
         {{$count++}}
     </td>
-    <td>
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
         <div class="parent" style="padding-bottom:20px;">
         
        <div style="padding-bottom:10px;padding-top:20px;">
@@ -135,30 +135,32 @@
        
         </div>
     </td>
-    <td>
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
         <input type="hidden" name="kategori[]" value="{{$stoks->kategori}}" style="width:200px;">
         {{$stoks->kategori}}
     </td>
-    <td>
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
         Rp. {{$stoks->harga}}
-        <input type="hidden" name="harga[]" value="{{$stoks->harga}}" style="width:200px;">
+        <input type="hidden" name="harga[{{$stoks->id}}]" value="{{$stoks->harga}}" style="width:200px;">
         
     </td>
-    <td>
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
     
         <input type="number" name="stokAwal[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->stokAwal}}">
 
         
     </td>
-    <td>
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
         <input type="number" name="stokAkhir[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->stokAkhir}}">
     </td>
 
-    <td>
-        <input type="number" name="terjual[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->terjual}}">
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
+        <input type="hidden" name="terjual[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->terjual}}">
+        {{$stoks->terjual}}
     </td>
-    <td>
-        <input type="number" name="total[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->total}}">
+    <td style="border:1px solid rgb(218, 218, 218);border-collapse:collapse">
+        <input type="hidden" name="total[{{$stoks->id}}]" style="width:100px;" value="{{$stoks->total}}">
+        Rp. {{number_format($stoks->total,0,',','.',)}}
     </td>
 </tr>
 
@@ -173,6 +175,21 @@
                 </div>
     
     </div>
+<div class="half-circle" style="font-family:Poppins;text-align:right;">
+    <div class="column" style="padding-right:125px;">
+
+        <div style="padding-top:50px;font-size:20px;">
+            Total Pendapatan 
+        </div>
+        <div style="font-size:50px;font-weight:bold">
+            Rp {{number_format($hasil,0,',','.',)}}
+        </div>
+       
+    </div>
+    
+    
+</div>
+    
                 </div>
                 
            

@@ -93,7 +93,7 @@
             </td>
             <td>
                 <div class="parent" style="padding-bottom:20px;">
- <img src ="{{$employee -> foto}}" width="60px" style="padding-right:20px;padding-top:15px;border-radius:50%;background-size:cover;" alt="Avatar">
+ <img src ="{{$employee -> foto}}" width="60px"  style="padding-right:20px;padding-top:15px;border-radius:50%;background-size:cover;" alt="Avatar">
                 
                <div style="padding-bottom:10px;padding-top:20px;">
                 {{$employee -> nama}}

@@ -3,6 +3,8 @@
 @section('isidb')
 
 
+
+
 <div style="position: absolute;right:5%;left:23.5%; top : 5.5%;display:flex;">
 
 
@@ -30,7 +32,7 @@
                 
                 <div style="padding-left:15px;padding-top:10px;font-size:13;">
                     
-                    Ikmal
+                    Semua
                 </div>
 
                 <div style="padding-top:5px;padding-left:70px;">
@@ -77,6 +79,8 @@
         <div class="penjualanbox">
             <div style="padding:20px;">
                 Penjualan Terbaru
+
+                @include('layouts.penjualanterbaru')
             </div>
             
         </div>
@@ -98,7 +102,7 @@
                         Jumlah Penjualan
                     </div>
                     <div style="font-family:Poppins;font-weight:bold;font-size:50;padding-left : 30px;padding-top:10px;">
-                        25
+                        {{$stok->count('id')}}
                     </div>
                 </div>
                 <div style="padding-top:20px;position:absolute;left:160px;">
@@ -119,7 +123,7 @@
                             Total Penjualan
                         </div>
                         <div style="font-family:Poppins;font-weight:bold;font-size:30;padding-left : 30px;padding-top:20px;">
-                            Rp. 7.300.000
+                           Rp.  {{number_format($stok->sum('total'),0,',','.',)}}
                         </div>
                     </div>
                     <div style="position:absolute;left:650px;">
@@ -149,8 +153,16 @@
 
     <div style="font-family:Poppins;color:#5A5F49;font-size:15px;">
         Berikut adalah rincian grafik dari penjualan kamu
-    </div>
 
+        <div style="padding-top:30px;"></div>
+        <div>
+            @include('layouts.chartpenjualan')
+        </div>
+        
+    </div>
+    
+
+    
     
 
 </div>

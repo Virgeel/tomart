@@ -105,7 +105,7 @@
                 {{$produk -> kategori}}
             </td>
             <td>
-                Rp. {{$produk -> harga}}
+                Rp. {{number_format($produk -> harga,0,',','.',)}}
             </td>
             <td>
                 <a href="/dashboard/produk/{{$produk -> id}}/edit"> 
