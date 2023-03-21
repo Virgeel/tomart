@@ -1,6 +1,6 @@
 <ul style="list-style:none;">
     
-    @foreach($stok as $stoks)
+    @foreach($penjualan as $stoks)
     <li style="">
 
         <div class="column" style="height:90px;">

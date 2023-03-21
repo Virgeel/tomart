@@ -4,36 +4,49 @@
 
 
 
-
-<div style="position: absolute;right:5%;left:23.5%; top : 5.5%;display:flex;">
+<form action="/dashboard" method="GET">
+<div style="position: absolute;right:5%;left:23.5%; top : 5.5%;display:flex;color:5A5F49">
 
 
 
     <div style="padding-right : 100px;padding-top : 40px;">
-        <div class="profilbar" style="border-radius:15;width:300;height:40;">
+        <div class="profilbar" style="border-radius:15;width:300;height:40;box-shadow:transparent;">
 
             <div class="parent">
 
                 <iconify-icon icon="uiw:date" height="25" style="padding-left:15px;padding-top:5px;"></iconify-icon>
                 <div style="padding-left:20px;padding-top:8px;">
-                    01/01/2023 - 31/01/2023
+                    <input type="month" name="filterpenjualan" style="font-family:Poppins;border:none;width:220px;font-weight:bold;color:5A5F49;" value="{{request('filterpenjualan')}}">
                 </div>
                 
             </div>
             
         </div>
     </div>
-    <div style="padding-right : 100px;padding-top : 40px;">
-        <div class="profilbar" style="border-radius:15;width:200;height:40;">
+
+    
+    <div style="padding-right : 100px;padding-top : 30px;">
+        <div style="border-radius:15;width:200;height:40;box-shadow:none;">
             <div class="parent">
                 <div style="padding-left:15px;padding-top:10px">
                     <iconify-icon icon="fluent:people-community-24-filled" height="20" style=""></iconify-icon>
                 </div>
                 
-                <div style="padding-left:15px;padding-top:10px;font-size:13;">
+                <select class = "profilbar" type="text" id="namaPegawai" name="namaPegawai" placeholder="Pilih pegawai" style="position:absolute;width:250px;height:43px;padding-top:10px;border:none;font-weight:bold;color:5A5F49" value="{{request('filterpenjualan')}}" >
+                                   
+                    <iconify-icon icon="fluent:people-community-24-filled" height="20" >
+                    </iconify-icon>
+                        
+                            
+                    <option selected> Pilih Pegawai </option>
                     
-                    Semua
-                </div>
+                    
+                        @foreach($pegawai as $employee)
+    
+                        <option value="{{$employee->nama}}">{{$employee->nama}}</option>
+                        @endforeach
+    
+                </select>
 
                 <div style="padding-top:5px;padding-left:70px;">
                     <iconify-icon icon="material-symbols:keyboard-arrow-down-rounded" height="30" style=""></iconify-icon>
@@ -42,23 +55,21 @@
 
             </div>
            
-            
+           
+        
         </div>
     </div>
-    <div style="padding-right : 100px;padding-top : 40px;">
-        <div class="profilbar" style="border-radius:15;width:135;height:40;background-color:#B3C279;color:white;">
-            <div style="padding-left:44px;padding-top:8px;">
-                Export
-            </div>
-            
-        </div>
+
+    <div style="padding-right : 100px;padding-top : 30px;">
+        
+        <input type=submit value="Export" style="padding-top:10px;border-radius:15;width:135;height:40;background-color:#B3C279;color:white;box-shadow:none;">
     </div>
   
-    
+</form> 
 
-    <div class="column" style="padding-left:100px;">
+    <div class="column" style="padding-left:20px;">
 
-        <div class="profilbar">
+        <div class="profilbar" style="width:350px;color:5A5F49">
 
                 <div style="padding-top:10px;padding-left:60px;font-size:15px;padding-bottom:5px;">
                 Halo,
@@ -76,7 +87,7 @@
         </div>
         <div style="padding-top:20px;"> </div>
 
-        <div class="penjualanbox">
+    <div class="penjualanbox" style="width:350px;">
             <div style="padding:20px;">
                 Penjualan Terbaru
 
@@ -92,7 +103,7 @@
     
 
 </div>
-<div style="position:absolute;top:200px;">
+<div style="position:absolute;top:200px;color:5A5F49">
     <div class="parent">
         <div style="width:400;height:150;background-color:white;border-radius:15px;">
     
@@ -144,21 +155,39 @@
     
     </div>
     
-    <div style="font-family:Poppins;font-weight:bold;padding-top:20px;color:#5A5F49">
+    <div style="font-family:Poppins;font-weight:bold;padding-top:20px;color:#5A5F49;font-size:19px;">
         Grafik Penjualan
         
     </div>
 
-    <p>
+    <div style="padding-top:5px;"></div>
 
     <div style="font-family:Poppins;color:#5A5F49;font-size:15px;">
         Berikut adalah rincian grafik dari penjualan kamu
 
         <div style="padding-top:30px;"></div>
         <div>
+            <form action="/dashboard" method="GET">
             @include('layouts.chartpenjualan')
+            </form>
         </div>
         
+    </div>
+
+    <div style="
+    background-color:white;
+    padding:25px;
+    border-radius:15px;
+    font-family:Poppins;
+    ">
+        <div class="parent">
+            Rata rata penjualan
+
+            <div style="padding-left: 600px;">
+                Rp.  {{number_format($stok->avg('total'),0,',','.',)}}
+            </div>
+        </div>
+
     </div>
     
 

@@ -6,6 +6,7 @@
 
 
 <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
 <html>
 
@@ -47,7 +48,12 @@ mulailah dari mana kamu berada.
         </label>
 
     <br>
+    <span> 
+        <iconify-icon icon="ic:outline-email" height="30" style=""></iconify-icon>
+    </span> 
     <input type="email" id="email" name="email" placeholder="contoh@gmail.com" autofocus>
+
+   
 
     @error('email')
     <div class="invalid-feedback">
@@ -55,6 +61,7 @@ mulailah dari mana kamu berada.
 
     </div>
 @enderror
+
     <p>
     
     <label for="password"><b>Password</b></label>

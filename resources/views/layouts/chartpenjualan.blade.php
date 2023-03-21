@@ -6,7 +6,7 @@
 
 
 <div>
-    <canvas id="myChart" style="background-color:white;border-radius:15px;padding:10px;" width="800" height="400"></canvas>
+    <canvas id="myChart" style="background-color:white;border-radius:15px;padding:10px;" width="600px;" height="300px;"></canvas>
 </div>
 
 
@@ -14,49 +14,46 @@
 <script>
     // Get the canvas element
     var ctx = document.getElementById('myChart').getContext('2d');
-
     // Set the chart data
     var chartData = {
-        labels: {!! json_encode($tanggal->toArray()) !!},
+        labels: {!! json_encode($tanggal) !!},
         datasets: [{
             label: 'Total Sales',
-            data: {!! json_encode($stok->pluck('total')) !!},
+            data: {!! json_encode($total) !!},
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
         }]
     };
-
     // Set the chart options
     var chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            xAxes: [{
-                type: 'time',
-                time: {
-                    displayFormats: {
-                        day: 'DD'
-                    },
-                    unit: 'day'
-                },
-                distribution: 'linear',
-                ticks: {
-                    autoSkip: true,
-                    maxTicksLimit: 31
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                    callback: function(value, index, values) {
-                        return 'Rp. ' + value.toLocaleString();
-                    }
-                }
-            }]
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    xAxes: [{
+      type: 'time',
+      time: {
+        displayFormats: {
+          day: 'DD'
+        },
+        unit: 'day'
+      },
+      distribution: 'linear',
+      ticks: {
+        autoSkip: true,
+        maxTicksLimit: 31
+      }
+    }],
+    yAxes: [{
+      ticks: {
+        beginAtZero: true,
+        callback: function(value, index, values) {
+          return 'Rp. ' + value.toLocaleString();
         }
-    };
-
+      }
+    }]
+  }
+};
     // Create the chart
     var myChart = new Chart(ctx, {
         type: 'line',
