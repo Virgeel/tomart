@@ -15,7 +15,7 @@
     
     
                         
-                            <input type="text" placeholder="Cari Produk" name="search" style="font-size:17;width:650px;height:60px;border-top-left-radius:15px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:15px;background-color:#B3C279" value="{{request('search')}}">
+                            <input class="search" type="text" placeholder="Cari Produk" name="search" style="font-size:17;width:650px;height:60px;border-top-left-radius:15px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:15px;background-color:#B3C279" value="{{request('search')}}">
 
                             <div style="padding-top:8px;">
                                 <button style="background-color:#B3C279;height:60px;width:50px;border-top-right-radius:15px;border-bottom-right-radius:15px;border:none;">
@@ -62,7 +62,7 @@
     <table style="width:1400px; background-color:white;border-collapse:collapse; text-align:left;">
 
         <thead>
-        <tr style="background-color:#f7f7f7;font-family:Poppins;">
+        <tr style="background-color:#f7f7f7;font-family:Inter;">
            <th style="text-align: center;">
             #
            </th>
@@ -87,7 +87,7 @@
     <?php $count = 1; ?>
 @foreach ($products -> skip(0) as $produk)
     
-        <tr style="font-family:Poppins;">
+        <tr style="font-family:Inter;">
             <td style="padding:10px;text-align:center">
                 {{$count++}}
             </td>
@@ -141,6 +141,13 @@
         @endforeach
 
     </table>
+
+    <div style="padding-top : 20px;font-family:Inter;color:white">
+        {!! $products->links('vendor/pagination/default') !!}
+
+    </div>
+
+    
     
   
 @else
@@ -177,10 +184,12 @@
     Data tidak ditemukan
 </div>
 
+    
 
 
     @endif
 
+    
 
 
 @endsection

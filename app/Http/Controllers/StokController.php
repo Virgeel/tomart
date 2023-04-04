@@ -40,7 +40,7 @@ class StokController extends Controller
         }
         return view('isi.stok.createstok',[
             "pegawai" => Pegawai::all(),
-            "products" => $products->get()
+            "products" => $products->get(),
         ]);
 
        
@@ -73,7 +73,7 @@ class StokController extends Controller
                 'nama.*' => 'required',
                 'kategori.*' => '',
                 'harga.*' => '',
-    
+                'pegawai_id' => 'required|exists:pegawais,id',
                 'produk_id.*' => 'required|exists:produks,id',
                 'tanggal.*' => 'required',
                 'stokAwal.*' => 'required',
@@ -98,11 +98,11 @@ class StokController extends Controller
                     'kategori' => $validatedStok['kategori'][$index],
                     'harga' => $validatedStok['harga'][$index],
                     'tanggal' => $request->input('tanggal'),
-                    'namaPegawai' => $request->input('namaPegawai'),
                     'stokAwal' => $validatedStok['stokAwal'][$index],
                     'stokAhir' => $validatedStok['stokAkhir'][$index],
                     'total' => $validatedStok['total'][$index],
                     'produk_id' => $validatedStok['produk_id'][$index],
+                    'pegawai_id' => $request->input('pegawai_id'),
 
                 ]);
 
@@ -129,7 +129,7 @@ class StokController extends Controller
 
         //     'produk_id' => 'required',
         //     'tanggal' => 'required',
-        //     'namaPegawai' => 'required',
+        //     'pegawai_id' => 'required',
         //     'stokAwal' => '',
         //     'stokAkhir' => '',
         //     'terjual' => '',
@@ -173,15 +173,15 @@ class StokController extends Controller
      * @param  \App\Models\Stok  $stok
      * @return \Illuminate\Http\Response
      */
-    public function edit($namaPegawai, $tanggal)
+    public function edit($pegawai_id, $tanggal)
 { 
-    $stok = Stok::where('namaPegawai', $namaPegawai)
+    $stok = Stok::where('pegawai_id', $pegawai_id)
                 ->where('tanggal', $tanggal)
                 ->with('produk')
                 ->get();
 
 
-    $hasil = Stok::where('namaPegawai' ,$namaPegawai)
+    $hasil = Stok::where('pegawai_id' ,$pegawai_id)
                     ->where('tanggal',$tanggal)
                     ->sum('total');
 
@@ -202,7 +202,7 @@ class StokController extends Controller
      * @param  \App\Models\Stok  $stok
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $namaPegawai, $tanggal)
+    public function update(Request $request, $pegawai_id, $tanggal)
     {
         $validatedStok = $request -> validate([
 
@@ -228,7 +228,7 @@ class StokController extends Controller
                 $total = null;
             }
 
-            Stok::where('namaPegawai',$namaPegawai)
+            Stok::where('pegawai_id',$pegawai_id)
                         ->where('tanggal',$tanggal)
                         ->where('id',$id)
                         ->update([
@@ -254,9 +254,9 @@ class StokController extends Controller
      * @param  \App\Models\Stok  $stok
      * @return \Illuminate\Http\Response
      */
-    public function destroy($namaPegawai, $tanggal)
+    public function destroy($pegawai_id, $tanggal)
     {
-        Stok::where('namaPegawai',$namaPegawai)
+        Stok::where('pegawai_id',$pegawai_id)
                 ->where('tanggal',$tanggal)
                 ->delete();
 

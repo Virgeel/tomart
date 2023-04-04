@@ -1,5 +1,3 @@
-
-
 input[type=submit]{
     width: 50.5%;
     background-color: #333333;
@@ -33,16 +31,52 @@ input[type=delete]:hover{
  
 }
 
+.search{
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
 
-input[type=text], select {
-    width: 50%;
-    padding: 12px 20px;
+.formbar{
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+  .input-box{
+     display: -ms-flexbox;
+     display:flex;
+    width: 100%;
+    padding:10px;
     margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
     border-radius: 10px;
     box-sizing: border-box;
     font-family: Poppins;
+  }
+
+  .input-box:focus{
+    border-color: 1px solid black;
+  }
+
+  .input-field{
+    border:none;
+    border-radius:10px;
+    padding-left:20px;
+    height: 50px;
+    width: 350px;
+  }
+
+  .input-field:focus{
+    border-color: 1px solid black;
   }
 
   input[type=number], select {
@@ -56,26 +90,6 @@ input[type=text], select {
     font-family: Poppins;
   }
 
-  input[type=password], select {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box;
-    font-family: Poppins;
-  }
-  input[type=email], select {
-    width: 50%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-sizing: border-box;
-    font-family: Poppins;
-  }
 
 
 
@@ -193,6 +207,17 @@ a{
   font-weight: semi-bold;
   color: white;
   text-align: center;
+}
+
+.sidebarrow{
+  color:#5A5F49;
+  display : flex;
+  padding-top : 20px;
+}
+
+.sidebarrow.active{
+  color : #B3C279
+  
 }
 
 .row.active{

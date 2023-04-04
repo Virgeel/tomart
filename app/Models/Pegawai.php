@@ -11,7 +11,7 @@ class Pegawai extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'pegawai_id';
+    protected $guarded = ['id'];
 
     protected $fillable = [
         'nama',
@@ -19,6 +19,9 @@ class Pegawai extends Model
         'telfon',
         'foto'
     ];
+
+    
+
 
    
 }

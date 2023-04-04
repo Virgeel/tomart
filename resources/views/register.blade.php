@@ -29,14 +29,14 @@
         <div style="width:1000px;">
             <label for="nameawal"><b>Nama Awal </b></label>
             <br>
-            <input type="text" id="nameawal" name="nameawal" placeholder="Nama awal" style="width:230px">
+            <input class="formbar" type="text" id="nameawal" name="nameawal" placeholder="Nama awal" style="width:230px">
       
         </div>
         <div style="width:1000px;">
             <label for="nameakhir"><b>Nama Akhir </b></label>
     <br>
 
-            <input type="text" id="nameakhir" name="nameakhir" placeholder="Nama akhir" style="width:250px">
+            <input class="formbar" type="text" id="nameakhir" name="nameakhir" placeholder="Nama akhir" style="width:250px">
       
         </div>
    
@@ -45,12 +45,12 @@
     
     <label for="email"><b>Email</b></label>
     <br>
-    <input type="text" id="email" name="email" placeholder="contoh@gmail.com" style="width:100%">
+    <input class="formbar" type="text" id="email" name="email" placeholder="contoh@gmail.com" style="width:100%">
     <p>
 
     <label for="password"><b>Password</b></label>
     <br>
-    <input type="text" id="password" name="password" placeholder="Password" style="width:100%">
+    <input class="formbar" type="text" id="password" name="password" placeholder="Password" style="width:100%">
         <p>
 
     <input type="hidden" id="level" name="level" value="admin">

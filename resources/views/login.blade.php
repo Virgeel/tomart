@@ -1,14 +1,6 @@
 @extends('layouts.main')
 
 @section('isi')
-    
-
-
-
-<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
-<html>
 
 
 <title>
@@ -43,24 +35,28 @@ mulailah dari mana kamu berada.
 <form action ="/login" method="post">
     @csrf
     <label for="email">
-        <i class="fas fa-envelope"></i>
         <b>Email</b>
         </label>
 
     <br>
-    <span> 
-        <iconify-icon icon="ic:outline-email" height="30" style=""></iconify-icon>
-    </span> 
-    <input type="email" id="email" name="email" placeholder="contoh@gmail.com" autofocus>
-
+    <div class="input-box">
+            
+            <iconify-icon icon="ic:outline-email" height="30" style="color:gray;position: absolute;padding:10px;"></iconify-icon>
+            <input type="email" class="input-field" id="email" name="email" placeholder="Masukkan email" style="padding-left:50px;" >
+       
+            @error('email')
+        <div class="invalid-feedback">
+            {{$message}}
+    
+        </div>
+    @enderror
+    </div>
+        
+        
+   
    
 
-    @error('email')
-    <div class="invalid-feedback">
-        {{$message}}
-
-    </div>
-@enderror
+    
 
     <p>
     
@@ -69,12 +65,18 @@ mulailah dari mana kamu berada.
     
 
     <br>
-    <input type="password" id="password" name="password" placeholder="Password">
-    @error('password')
-    <div class="invalid-feedback">
-        {{$message}}
+    <div class="input-box">
+        <iconify-icon icon="mdi:lock" height="30" style="color:gray;padding:10px;position: absolute;"></iconify-icon>
+        <input class="input-field" type="password" id="password" name="password" placeholder="Password" style="padding-left:50px">
+        
+        @error('password')
+        <div class="invalid-feedback">
+            {{$message}}
+        </div>
+    @enderror  
+
     </div>
-@enderror  
+    
     <p>
     <input type="submit" value="Masuk">
 </form>   
@@ -88,6 +90,5 @@ Belum mempunyai akun ?
 </div>
 </body>
 
-</html>
 @endsection
 

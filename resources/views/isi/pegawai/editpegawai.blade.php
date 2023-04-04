@@ -30,24 +30,24 @@ Isi form dibawah ini dengan sesuai
     @csrf
     <label for ="nama"> Nama Pegawai* </label>
     <br>
-    <input type="text" id="nama" name="nama" placeholder="Nama Produk" style="width:80%;" value="{{$pegawai->nama}}">
+    <input class ="formbar" type="text" id="nama" name="nama" placeholder="Nama Produk" style="width:80%;" value="{{$pegawai->nama}}">
 
     <p>
         <label for ="alamat"> Alamat* </label>
         <br>
-    <input type="text" id="alamat" name="alamat" placeholder="alamat" style="width:80%" value="{{$pegawai->alamat}}">
+    <input class="formbar" type="text" id="alamat" name="alamat" placeholder="alamat" style="width:80%" value="{{$pegawai->alamat}}">
 
     <p>
     <label for ="telfon"> Nomor Telefon* </label>
     <br>
-    <input type="text" id="telfon" name="telfon" placeholder="Nomor telfon" style="width:80%;" value="{{$pegawai->telfon}}"> 
+    <input class="formbar" type="text" id="telfon" name="telfon" placeholder="Nomor telfon" style="width:80%;" value="{{$pegawai->telfon}}"> 
     
     
 
     <p>
     <label for ="foto"> Foto Profil</label>
     <br>
-    <input type="text" id="foto" name="foto" placeholder="Link gambar" style="width:80%;" value="{{$pegawai->foto}}">
+    <input class="formbar" type="text" id="foto" name="foto" placeholder="Link gambar" style="width:80%;" value="{{$pegawai->foto}}">
 
     <div style="padding-top:30px;padding-left:60px;">
         <input type="submit" value="Tambah Pegawai" style="background-color:#B3C279">

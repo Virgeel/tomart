@@ -49,7 +49,7 @@ Route::delete('/dashboard/pegawai/{id}',[PegawaiController::class,'destroy']);
 Route::get('/dashboard/stok',[DashboardController::class,'stok'])->middleware('auth');
 Route::get('/dashboard/stok/tambah',[StokController::class,'create'])->middleware('auth');
 Route::post('/dashboard/stok/create',[StokController::class,'store']);
-Route::get('/dashboard/stok/{namaPegawai}/{tanggal}/edit',[StokController::class,'edit'])->middleware('auth');
-Route::post('/dashboard/stok/{namaPegawai}/{tanggal}/edit',[StokController::class,'update']);
-Route::delete('/dashboard/stok/{namaPegawai}/{tanggal}/delete',[StokController::class,'destroy']);
+Route::get('/dashboard/stok/{pegawai_id}/{tanggal}/edit',[StokController::class,'edit'])->middleware('auth');
+Route::post('/dashboard/stok/{pegawai_id}/{tanggal}/edit',[StokController::class,'update']);
+Route::delete('/dashboard/stok/{pegawai_id}/{tanggal}/delete',[StokController::class,'destroy']);
 

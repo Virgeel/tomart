@@ -3,7 +3,7 @@
 @section('isidb')
 
 <div class="column">
-    <form method="POST" action="/dashboard/stok/{{$stok[0]->namaPegawai}}/{{$stok[0]->tanggal}}/edit">
+    <form method="POST" action="/dashboard/stok/{{$stok[0]->pegawai_id}}/{{$stok[0]->tanggal}}/edit">
         @csrf
 
 
@@ -52,7 +52,7 @@
                                     </iconify-icon>
                                         
                                             
-                                    <option selected> {{$stok[0]->namaPegawai}} </option>
+                                    <option selected> {{$stok[0]->pegawai->nama}} </option>
                                     
                                     
 
@@ -93,10 +93,10 @@
                                <th>
                                 Kategori
                                </th>
-                               <th>
+                               <th style="padding-left:20px;">
                                 Harga
                                </th>
-                               <th>
+                               <th style="padding-left:20px;">
                                 Stok Awal
                                </th>
                                <th>
@@ -128,18 +128,18 @@
     <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
         <div class="parent" style="padding-bottom:20px;">
         
-       <div style="padding-bottom:10px;padding-top:20px;">
+       <div style="padding-bottom:10px;padding-top:20px;padding-left:20px;">
         <input type="hidden" name="nama[]" value="{{$stoks->nama}}" style="width:200px;">
         {{$stoks->nama}}
     </div>
        
         </div>
     </td>
-    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse;padding-left:20px;">
         <input type="hidden" name="kategori[]" value="{{$stoks->kategori}}" style="width:200px;">
         {{$stoks->kategori}}
     </td>
-    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
+    <td style="border:solid 1px rgb(218, 218, 218);padding-left:20px;">
         Rp. {{$stoks->harga}}
         <input type="hidden" name="harga[{{$stoks->id}}]" value="{{$stoks->harga}}" style="width:200px;">
         
@@ -175,7 +175,7 @@
                 </div>
     
     </div>
-<div class="half-circle" style="font-family:Poppins;text-align:right;">
+<div class="half-circle" style="font-family:Poppins;text-align:right;position:fixed;">
     <div class="column" style="padding-right:125px;">
 
         <div style="padding-top:50px;font-size:20px;">
@@ -191,6 +191,8 @@
 </div>
     
                 </div>
+
+               
                 
            
 
@@ -199,6 +201,7 @@
 
 
 </form>
+
    
             
 
@@ -209,6 +212,8 @@
    
     
 
+</div>
+<div style="padding:300px;">
 </div>
 
 @endsection

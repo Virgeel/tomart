@@ -32,7 +32,7 @@
                     <iconify-icon icon="fluent:people-community-24-filled" height="20" style=""></iconify-icon>
                 </div>
                 
-                <select class = "profilbar" type="text" id="namaPegawai" name="namaPegawai" placeholder="Pilih pegawai" style="position:absolute;width:250px;height:43px;padding-top:10px;border:none;font-weight:bold;color:5A5F49" value="{{request('filterpenjualan')}}" >
+                <select class = "profilbar" type="text" id="pegawai_id" name="pegawai_id" placeholder="Pilih pegawai" style="position:absolute;width:250px;height:43px;padding-top:10px;border:none;font-weight:bold;color:5A5F49" value="{{request('filterpenjualan')}}" >
                                    
                     <iconify-icon icon="fluent:people-community-24-filled" height="20" >
                     </iconify-icon>
@@ -43,7 +43,7 @@
                     
                         @foreach($pegawai as $employee)
     
-                        <option value="{{$employee->nama}}">{{$employee->nama}}</option>
+                        <option value="{{$employee->id}}">{{$employee->nama}}</option>
                         @endforeach
     
                 </select>
@@ -179,11 +179,12 @@
     padding:25px;
     border-radius:15px;
     font-family:Poppins;
+    
     ">
         <div class="parent">
             Rata rata penjualan
 
-            <div style="padding-left: 600px;">
+            <div style="padding-left: 600px;font-weight:bold;">
                 Rp.  {{number_format($stok->avg('total'),0,',','.',)}}
             </div>
         </div>

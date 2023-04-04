@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->date('tanggal');
-            $table->string('namaPegawai');
-            $table->unsignedBigInteger('produk_id');
+            $table->foreignId('produk_id');
             $table->foreign('produk_id')->references('id')->on('produks')->onDelete('cascade');
+            $table->foreignId('pegawai_id');
+            $table->foreign('pegawai_id')->references('id')->on('pegawais');
             $table->string('nama');
             $table->string('kategori');
-            $table->string('foto') -> nullable();
             $table->string('harga');
             $table->integer('stokAwal')->nullable();
             $table->integer('stokAkhir')->nullable();

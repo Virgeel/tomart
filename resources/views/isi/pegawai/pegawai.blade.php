@@ -15,7 +15,7 @@
 
 
                     
-                    <input type="text" placeholder="Cari Pegawai" name="search" style="font-size:17;width:650px;height:60px;border-top-left-radius:15px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:15px;background-color:#B3C279" value="{{request('search')}}">
+                    <input class="search" type="text" placeholder="Cari Pegawai" name="search" style="font-size:17;width:650px;height:60px;border-top-left-radius:15px;border-top-right-radius:0;border-bottom-right-radius:0;border-bottom-left-radius:15px;background-color:#B3C279" value="{{request('search')}}">
 
                     <div style="padding-top:8px;">
                         <button style="background-color:#B3C279;height:60px;width:50px;border-top-right-radius:15px;border-bottom-right-radius:15px;border:none;">
@@ -93,8 +93,9 @@
             </td>
             <td>
                 <div class="parent" style="padding-bottom:20px;">
- <img src ="{{$employee -> foto}}" width="60px"  style="padding-right:20px;padding-top:15px;border-radius:50%;background-size:cover;" alt="Avatar">
-                
+                    <div style="padding-top:10px;padding-right:20px;">
+                        <img src="{{$employee->foto}}" width="50px;" height="50px;" style="border-radius:50%;">
+                    </div>             
                <div style="padding-bottom:10px;padding-top:20px;">
                 {{$employee -> nama}}
             </div>

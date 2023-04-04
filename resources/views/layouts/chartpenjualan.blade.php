@@ -6,7 +6,7 @@
 
 
 <div>
-    <canvas id="myChart" style="background-color:white;border-radius:15px;padding:10px;" width="600px;" height="300px;"></canvas>
+    <canvas id="myChart" style="background-color:white;border-radius:15px;padding:10px;" width="800px;" height="300px;"></canvas>
 </div>
 
 
@@ -18,10 +18,10 @@
     var chartData = {
         labels: {!! json_encode($tanggal) !!},
         datasets: [{
-            label: 'Total Sales',
+            label: 'Total Penjualan',
             data: {!! json_encode($total) !!},
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            borderColor: 'rgba(209, 218, 175, 1)',
             borderWidth: 1
         }]
     };

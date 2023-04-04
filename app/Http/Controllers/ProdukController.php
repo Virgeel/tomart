@@ -20,7 +20,7 @@ class ProdukController extends Controller
 
 
         return view('isi.produk.produk',[
-            "products" => $products->get()
+            "products" => $products->paginate(6)
 
         ]);
 

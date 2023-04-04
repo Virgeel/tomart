@@ -30,24 +30,24 @@ Isi form dibawah ini dengan sesuai
     @csrf
     <label for ="nama"> Nama Pegawai* </label>
     <br>
-    <input type="text" id="nama" name="nama" placeholder="Nama Pegawai" style="width:80%;">
+    <input class="formbar" type="text" id="nama" name="nama" placeholder="Nama Pegawai" style="width:80%;">
 
     <p>
         <label for ="alamat"> Alamat* </label>
         <br>
-    <input type="text" id="alamat" name="alamat" placeholder="alamat" style="width:80%">
+    <input class="formbar" type="text" id="alamat" name="alamat" placeholder="alamat" style="width:80%">
 
     <p>
     <label for ="telfon"> Nomor Telefon* </label>
     <br>
-    <input type="text" id="telfon" name="telfon" placeholder="Nomor telfon" style="width:80%;"> 
+    <input class="formbar" type="text" id="telfon" name="telfon" placeholder="Nomor telfon" style="width:80%;"> 
     
     
 
     <p>
     <label for ="foto"> Foto Profil</label>
     <br>
-    <input type="text" id="foto" name="foto" placeholder="Link gambar" style="width:80%;">
+    <input class="formbar" type="text" id="foto" name="foto" placeholder="Link gambar" style="width:80%;">
 
     <div style="padding-top:30px;padding-left:60px;">
         <input type="submit" value="Tambah Pegawai" style="background-color:#B3C279">

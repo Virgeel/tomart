@@ -46,7 +46,7 @@
                     <div class="parent">
                      
                             <div>
-                                <select class = "profilbar" type="text" id="namaPegawai" name="namaPegawai" placeholder="Pilih pegawai" style="position:absolute;width:250px;height:43px;padding-top:10px;border:none;" >
+                                <select class = "profilbar" type="text" id="pegawai_id" name="pegawai_id" placeholder="Pilih pegawai" style="position:absolute;width:250px;height:43px;padding-top:10px;border:none;" >
                                    
                                     <iconify-icon icon="fluent:people-community-24-filled" height="20" >
                                     </iconify-icon>
@@ -57,10 +57,18 @@
                                     
                                         @foreach($pegawai as $employee)
 
-                                        <option value="{{$employee->nama}}">{{$employee->nama}}</option>
+                                        
+                                        <option value="{{$employee->id}}">
+
+                                            {{$employee->nama}}
+                                           
+                                        </option>
+                                        
+                                        
                                         @endforeach
 
                                 </select>
+                                
                             </div>
                                  
 
@@ -84,7 +92,7 @@
             
                 <div style="position:absolute;top:20%;">
                     <div style="padding-top:50px;">
-                        <table style="width:1400px; background-color:white;border:solid 1px black; text-align:left;">
+                        <table style="width:1400px; background-color:white;border:solid 1px rgb(218, 218, 218); text-align:left;">
                     
                             <thead>
                             <tr style="background-color:#f7f7f7;font-family:Poppins;">
@@ -94,7 +102,7 @@
                                <th style="padding:10px;">
                                 Nama Produk
                                </th>
-                               <th>
+                               <th style="padding-left:20px;">
                                 Kategori
                                </th>
                                <th>
@@ -125,10 +133,10 @@
 
     
 <tr style="font-family:Poppins;">
-    <td style="padding:10px;text-align:center">
+    <td style="padding:10px;text-align:center;border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
         {{$count++}}
     </td>
-    <td>
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
         <div class="parent" style="padding-bottom:20px;">
 <img src ="{{$produk -> foto}}" width="70px" style="padding-right:20px;padding-top:15px;">
         
@@ -139,26 +147,26 @@
        
         </div>
     </td>
-    <td>
+    <td style="border:solid 1px rgb(218, 218, 218);padding-left:10px;">
         <input type="hidden" name="kategori[]" value="{{$produk->kategori}}" style="width:200px;">
         {{$produk->kategori}}
     </td>
-    <td>
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse;padding-left:10px;">
         Rp. {{$produk->harga}}
         <input type="hidden" name="harga[]" value="{{$produk->harga}}" style="width:200px;">
         
     </td>
-    <td>
-        <input type="text" name="stokAwal[]" style="width:100px;">
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
+        <input type="text" name="stokAwal[]" style="height:50px;width:50px;border:none;padding-left:20px">
     </td>
-    <td>
-        <input type="text" name="stokAkhir[]" style="width:100px;">
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
+        <input type="text" name="stokAkhir[]" style="height:50px;width:50px;border:none">
     </td>
-    <td>
-        <input type="text" name="terjual[]" style="width:100px;">
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
+        <input type="text" name="terjual[]" style="height:50px;width:50px;border:none">
     </td>
-    <td>
-        <input type="text" name="total[]" style="width:100px;">
+    <td style="border:solid 1px rgb(218, 218, 218);border-collapse:collapse">
+        <input type="text" name="total[]" style="height:50px;width:50px;border:none">
     </td>
 </tr>
 
@@ -166,6 +174,12 @@
                         </tbody>
                     
                     </table>
+
+                    <div style="padding:100px;">
+
+
+                    </div>
+                  
     
                   
     

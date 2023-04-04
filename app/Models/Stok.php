@@ -19,6 +19,7 @@ class Stok extends Model
         'harga',
         'produk_id',
         'tanggal',
+        'pegawai_id',
         'namaPegawai',
         'stokAwal',
         'stokAkhir',

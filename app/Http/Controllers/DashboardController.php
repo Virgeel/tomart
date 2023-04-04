@@ -16,7 +16,7 @@ class DashboardController extends Controller
     //
 
     public function landing(Request $request){
-        $namaPegawai = $request->input('namaPegawai');
+        $pegawai_id = $request->input('pegawai_id');
 
     $tanggal = $request->input('tanggal');
 
@@ -31,27 +31,12 @@ class DashboardController extends Controller
             $tanggals[] = null;
         }
     }
-
-        // $tanggals = Stok::select('tanggal')
-        //     ->whereBetween('tanggal', [$startDate, $endDate])
-        //     ->distinct()
-        //     ->orderBy('tanggal')
-        //     ->get()
-        //     ->pluck('tanggal')
-        //     ->map(function ($date) {
-        //         return Carbon::parse($date)->format('d');
-        //     })
-        //     ->toArray();
-
-        // $startDate=Carbon::parse($tanggal)->startOfMonth();
-        // $endDate = Carbon::parse($tanggal)->endOfMonth();
-
-        // $tanggals = Stok::select('tanggal')->distinct()->orderBy('tanggal')->get()->pluck('tanggal');
-        $stok = Stok::query()
-    ->where('namaPegawai', $namaPegawai)
+    
+    $stok = Stok::query()
+    ->where('pegawai_id', $pegawai_id)
     ->whereBetween('tanggal', [$startDate, $endDate])
-    ->select('namaPegawai', 'tanggal', DB::raw('SUM(total) as total'))
-    ->groupBy('namaPegawai','tanggal')
+    ->select('pegawai_id', 'tanggal', DB::raw('SUM(total) as total'))
+    ->groupBy('pegawai_id','tanggal')
     ->orderBy('tanggal', 'asc')
     ->get()
     ->map(function($item){
@@ -61,32 +46,30 @@ class DashboardController extends Controller
 
     $total = array_fill_keys($tanggals, 0);
 
-    // Loop through the $stok results and update the $total array with the actual totals
     foreach ($stok as $result) {
         $total[$result->tanggal->format('d')] = $result->total;
     }
     
-    // Convert the $total array values to an array
     $total = array_values($total);
     
 
-        $penjualan = Stok::query()
-        ->when($tanggal, function($query, $tanggal) {
-            return $query->whereDate('tanggal', $tanggal);
-        })
+    $penjualan = Stok::query()
+    ->when($tanggal, function($query, $tanggal) {
+        return $query->whereDate('tanggal', $tanggal);
+    })
         
-        ->select('namaPegawai','tanggal',DB::raw('SUM(total) as total'))
-        ->with('pegawai')
-        ->groupBy('namaPegawai','tanggal')
-        ->orderBy('tanggal','asc')
-        ->distinct('namaPegawai')
-        ->get();
+    ->select('pegawai_id','tanggal',DB::raw('SUM(total) as total'))
+    ->with('pegawai')
+    ->groupBy('pegawai_id','tanggal')
+    ->orderBy('tanggal','asc')
+    ->distinct('pegawai_id')
+    ->get();
 
 
-        if(request('filterpenjualan')){
-            $stok -> where('namaPegawai','like','%' ,'tanggal' . request('filterpegawai') . '%');
+    if(request('filterpenjualan')){
+        $stok -> where('pegawai_id','like','%' ,'tanggal' . request('filterpegawai') . '%');
 
-        }
+    }
         
         return view('isi/dashboard',[
             "products" => Produk::all(),
@@ -130,11 +113,11 @@ class DashboardController extends Controller
                     return $query->whereDate('tanggal', $tanggal);
                 })
                 
-                ->select('namaPegawai','tanggal',DB::raw('SUM(total) as total'))
+                ->select('pegawai_id','tanggal',DB::raw('SUM(total) as total'))
                 ->with('pegawai')
-                ->groupBy('namaPegawai','tanggal')
+                ->groupBy('pegawai_id','tanggal')
                 ->orderBy('id','asc')
-                ->distinct('namaPegawai')
+                ->distinct('pegawai_id')
                 ->get();
 
         

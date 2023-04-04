@@ -46,7 +46,7 @@
     <table style="width:1400px; background-color:white;border-collapse:collapse; text-align:left;">
 
         <thead>
-        <tr style="background-color:#f7f7f7;font-family:Poppins;">
+        <tr style="background-color:#f7f7f7;font-family:Inter;">
            <th style="text-align: center;">
             #
            </th>
@@ -73,18 +73,24 @@
    
 @foreach ($stok -> skip(0) as $stoks)
     
-        <tr style="font-family:Poppins;">
+        <tr style="font-family:Inter;">
             <td style="padding:10px;text-align:center;">
                 {{$count++}}
             </td>
             <td>
-               
-                
+               <div class="parent">
+                <div style="padding-top:10px;padding-right:20px;">
+                    <img src="{{$stoks->pegawai->foto}}" width="50px;" height="50px;" style="border-radius:50%;">
+                </div>
+
                <div style="padding-bottom:10px;padding-top:20px;">
-                {{$stoks -> namaPegawai}}
+                {{$stoks -> pegawai ->nama}}
          
                
                 </div>
+
+               </div>
+                
             </td>
             <td>
                 
@@ -103,16 +109,16 @@
                 
             </td>
             <td>
-                <a href="/dashboard/stok/{{ $stoks->namaPegawai }}/{{$stoks->tanggal}}/edit"> 
+                <a href="/dashboard/stok/{{ $stoks->pegawai_id}}/{{$stoks->tanggal}}/edit"> 
                     <div class="editbutton">
                          EDIT
                     </div>
                 </a>
                 
             </td>
-            <td>
+            <td style="padding-top:15px;">
                 
-                <form action="/dashboard/stok/{{$stoks->namaPegawai}}/{{$stoks->tanggal}}/delete" method="post" class="d-inline">
+                <form action="/dashboard/stok/{{$stoks->pegawai_id}}/{{$stoks->tanggal}}/delete" method="post" class="d-inline">
                     @method('delete')
                     @csrf
                     

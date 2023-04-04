@@ -30,7 +30,7 @@ Isi form dibawah ini dengan sesuai
     @csrf
     <label for ="nama"> Nama Produk* </label>
     <br>
-    <input type="text" id="nama" name="nama" placeholder="Nama Produk" style="width:80%;">
+    <input class="formbar" type="text" id="nama" name="nama" placeholder="Nama Produk" style="width:80%;">
 
     <p>
         <label for ="kategori"> Kategori* </label>
@@ -47,14 +47,14 @@ Isi form dibawah ini dengan sesuai
     <p>
     <label for ="harga"> Harga* </label>
     <br>
-    <input type="text" id="harga" name="harga" placeholder="Nama Produk" style="width:80%;"> 
+    <input class="formbar" type="text" id="harga" name="harga" placeholder="Nama Produk" style="width:80%;"> 
     
     
 
     <p>
     <label for ="foto"> Link Gambar</label>
     <br>
-    <input type="text" id="foto" name="foto" placeholder="Link gambar" style="width:80%;">
+    <input class="formbar" type="text" id="foto" name="foto" placeholder="Link gambar" style="width:80%;">
 
     <div style="padding-top:30px;padding-left:60px;">
         <input type="submit" value="Tambah Produk" style="background-color:#B3C279">
